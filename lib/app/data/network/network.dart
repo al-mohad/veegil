@@ -25,16 +25,16 @@ class NetworkProvider {
   initialize() async {
     Get.log('Initializing network provider');
     appDocPath = await getDocPath();
-    cookieJar = PersistCookieJar(
-      ignoreExpires: true,
-      storage: FileStorage('${appDocPath!}/.cookies'),
-    );
   }
 
   //create singleton
   NetworkProvider._internal() {
     dio = Dio();
     initialize();
+    cookieJar = PersistCookieJar(
+      ignoreExpires: true,
+      storage: FileStorage('${appDocPath.toString()}/.cookies'),
+    );
     dio.interceptors.add(HeaderInterceptors());
     dio.interceptors.add(CookieManager(cookieJar));
     dio.interceptors.add(TokenManager.instance);
