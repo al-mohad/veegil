@@ -12,20 +12,4 @@ class StorageManager extends GetxService {
     _box = GetStorage();
     super.onInit();
   }
-
-  Future<void> saveToken({required String token}) async {
-    await _box.write('token', token);
-  }
-
-  Future clearToken({required String token}) async {
-    await _box.remove('token');
-  }
-
-  Future getToken() async {
-    String token = '';
-    if (_box.hasData('token')) {
-      token = await _box.read('token');
-    }
-    return token;
-  }
 }
