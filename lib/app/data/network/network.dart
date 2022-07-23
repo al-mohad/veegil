@@ -30,7 +30,6 @@ class NetworkProvider {
   //create singleton
   NetworkProvider._internal() {
     dio = Dio();
-    initialize();
     cookieJar = PersistCookieJar(
       ignoreExpires: true,
       storage: FileStorage('${appDocPath.toString()}/.cookies'),
