@@ -49,8 +49,13 @@ class SignUpView extends GetView<AuthController> {
                   keyboardType: TextInputType.emailAddress,
                   // controller: controller.emailController,
                   validator: (value) {
-                    if (value!.trim().isEmpty) {
-                      return 'Please enter your email';
+                    if (value!.isEmpty) {
+                      return 'Please enter your phone number';
+                    } else if (value.length < 10) {
+                      return 'Please enter a valid phone number e.g. 2348023456789';
+                    }
+                    if (value.startsWith('0')) {
+                      return 'Please enter in international format';
                     }
                     return null;
                   },

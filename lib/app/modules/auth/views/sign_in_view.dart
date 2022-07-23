@@ -35,6 +35,7 @@ class SignInView extends GetView<AuthController> {
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: 'Phone Number',
+                    hintText: '+91-1234567890',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -49,6 +50,11 @@ class SignInView extends GetView<AuthController> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return 'Please enter your phone number';
+                    } else if (value.length < 10) {
+                      return 'Please enter a valid phone number e.g. 2348023456789';
+                    }
+                    if (value.startsWith('0')) {
+                      return 'Please enter in international format';
                     }
                     return null;
                   },

@@ -47,13 +47,13 @@ class AuthController extends GetxController {
         Get.offAllNamed(Routes.HOME);
         update();
       } catch (e) {
-        Get.snackbar(
-          'Invalid Credentails',
-          'Phone number or password in incorrect',
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-          icon: const Icon(Icons.error, color: Colors.white),
-        );
+        // Get.snackbar(
+        //   'Invalid Credentails',
+        //   'Phone number or password in incorrect',
+        //   backgroundColor: Colors.red,
+        //   colorText: Colors.white,
+        //   icon: const Icon(Icons.error, color: Colors.white),
+        // );
         Get.log('Error: $e', isError: true);
       }
     } else {
@@ -81,13 +81,13 @@ class AuthController extends GetxController {
         });
         update();
       } catch (e) {
-        Get.snackbar(
-          'Phone Number Already Exists',
-          'Please try another phone number',
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-          icon: const Icon(Icons.error, color: Colors.white),
-        );
+        // Get.snackbar(
+        //   'Phone Number Already Exists',
+        //   'Please try another phone number',
+        //   backgroundColor: Colors.red,
+        //   colorText: Colors.white,
+        //   icon: const Icon(Icons.error, color: Colors.white),
+        // );
         Get.log('Error: $e', isError: true);
       }
     } else {
