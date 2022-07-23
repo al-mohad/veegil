@@ -4,6 +4,7 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/utils.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:veegil/app/data/storage/token_manager.dart';
 
 import 'apiClient.dart';
 import 'header_interceptor.dart';
@@ -36,6 +37,7 @@ class NetworkProvider {
     initialize();
     dio.interceptors.add(HeaderInterceptors());
     dio.interceptors.add(CookieManager(cookieJar));
+    dio.interceptors.add(TokenManager.instance);
     dio.options.connectTimeout = 30000;
     dio.options.receiveTimeout = 30000;
     apiClient = ApiClient(dio, baseUrl: ApiClient.baseUrl);
