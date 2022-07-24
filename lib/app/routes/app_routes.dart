@@ -8,6 +8,7 @@ abstract class Routes {
   static const TRANSACTIONS = _Paths.TRANSACTIONS;
   static const SETTINGS = _Paths.SETTINGS;
   static const ACCOUNT = _Paths.ACCOUNT;
+  static const USERS = _Paths.USERS;
 }
 
 abstract class _Paths {
@@ -17,4 +18,5 @@ abstract class _Paths {
   static const TRANSACTIONS = '/transactions';
   static const SETTINGS = '/settings';
   static const ACCOUNT = '/account';
+  static const USERS = '/users';
 }

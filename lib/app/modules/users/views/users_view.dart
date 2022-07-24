@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:veegil/app/widgets/shimmers.dart';
+import 'package:veegil/app/data/models/account.dart';
 
-import '../../../data/models/transaction.dart';
-import '../controllers/transactions_controller.dart';
+import '../../../widgets/shimmers.dart';
+import '../controllers/users_controller.dart';
 
-class TransactionsView extends GetView<TransactionsController> {
-  const TransactionsView({Key? key}) : super(key: key);
+class UsersView extends GetView<UsersController> {
+  const UsersView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,17 +15,16 @@ class TransactionsView extends GetView<TransactionsController> {
         (state) => ListView.builder(
           physics: const BouncingScrollPhysics(),
           itemBuilder: (c, i) {
-            Transaction t = state.transactions[i];
+            Account a = state[i];
             return ListTile(
-              leading: Icon(
-                t.type == 'credit' ? Icons.arrow_upward : Icons.arrow_downward,
-                color: t.type == 'credit' ? Colors.green : Colors.red,
+              leading: const Icon(
+                Icons.person,
               ),
-              title: Text(t.phoneNumber),
+              title: Text(a.phoneNumber),
               subtitle: Text(
-                DateFormat.yMMMMEEEEd().format(DateTime.parse(t.created)),
+                DateFormat.yMMMMEEEEd().format(DateTime.parse(a.created)),
               ),
-              trailing: Text('\u20a6 ${t.amount}'),
+              trailing: Text('\u20a6 ${a.balance}'),
             );
           },
         ),

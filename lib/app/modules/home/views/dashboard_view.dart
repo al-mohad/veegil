@@ -81,17 +81,20 @@ class DashboardView extends GetView<HomeController> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Recent Transactions',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'See All',
-                  style: TextStyle(color: Colors.grey),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    'See All',
+                    style: TextStyle(color: Colors.grey),
+                  ),
                 ),
               ],
             ),

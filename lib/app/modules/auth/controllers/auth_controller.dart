@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:veegil/app/data/network/api_error.dart';
+import 'package:veegil/app/routes/app_pages.dart';
 
 import '../../../data/enums/view_state.dart';
 import '../../../data/models/user.dart';
@@ -40,10 +41,10 @@ class AuthController extends GetxController {
         'phoneNumber': phoneNumberController.text.trim(),
         'password': passwordController.text.trim(),
       };
-      await _authRepository
-          .login(data)
-          .then((value) => print(value))
-          .catchError((onError) {
+      await _authRepository.login(data).then((value) {
+        print(value);
+        Get.offAllNamed(Routes.HOME);
+      }).catchError((onError) {
         final message = DioExceptions.fromDioError(onError).message;
         Get.snackbar(
           'Error',
@@ -69,10 +70,10 @@ class AuthController extends GetxController {
         'phoneNumber': phoneNumberController.text.trim(),
         'password': passwordController.text.trim()
       };
-      await _authRepository
-          .register(data)
-          .then((value) => print(value))
-          .catchError((onError) {
+      await _authRepository.register(data).then((value) {
+        print(value);
+        Get.offAllNamed(Routes.HOME);
+      }).catchError((onError) {
         final message = DioExceptions.fromDioError(onError).message;
         Get.snackbar(
           'Error',

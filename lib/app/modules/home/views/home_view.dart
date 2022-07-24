@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:veegil/app/modules/account/views/account_view.dart';
 import 'package:veegil/app/modules/home/views/dashboard_view.dart';
-import 'package:veegil/app/modules/settings/views/settings_view.dart';
 import 'package:veegil/app/modules/transactions/views/transactions_view.dart';
+import 'package:veegil/app/modules/users/views/users_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -51,7 +51,7 @@ class HomeView extends GetView<HomeController> {
             children: const [
               DashboardView(),
               TransactionsView(),
-              SettingsView(),
+              UsersView(),
               AccountView(),
             ],
           )),
@@ -72,8 +72,8 @@ class HomeView extends GetView<HomeController> {
                 label: 'Transactions',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: 'Settings',
+                icon: Icon(Icons.group_rounded),
+                label: 'Users',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),

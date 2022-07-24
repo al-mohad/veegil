@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:veegil/app/data/network/network.dart';
 import 'package:veegil/app/data/storage/token_manager.dart';
+import 'package:veegil/app/modules/users/controllers/users_controller.dart';
 
+import 'app/modules/transactions/controllers/transactions_controller.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
@@ -13,7 +15,9 @@ void main() async {
 
   await TokenManager.instance.initToken();
   await setCookieManager();
-
+  Get.lazyPut<TransactionsController>(() => TransactionsController(),
+      fenix: true);
+  Get.lazyPut<UsersController>(() => UsersController(), fenix: true);
   runApp(
     GetMaterialApp(
       title: "Application",
