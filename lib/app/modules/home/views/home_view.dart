@@ -48,11 +48,11 @@ class HomeView extends GetView<HomeController> {
       ),
       body: Obx(() => IndexedStack(
             index: controller.tabIndex.value,
-            children: const [
+            children: [
               DashboardView(),
-              TransactionsView(),
-              UsersView(),
-              AccountView(),
+              const TransactionsView(),
+              const UsersView(),
+              const AccountView(),
             ],
           )),
       bottomNavigationBar: Obx(() => BottomNavigationBar(

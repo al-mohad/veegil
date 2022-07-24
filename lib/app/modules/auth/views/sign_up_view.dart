@@ -46,7 +46,7 @@ class SignUpView extends GetView<AuthController> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.number,
                   // controller: controller.emailController,
                   validator: (value) {
                     if (value!.isEmpty) {

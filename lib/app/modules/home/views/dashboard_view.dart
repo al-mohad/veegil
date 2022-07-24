@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:veegil/app/data/models/transaction.dart';
+import 'package:veegil/app/modules/auth/controllers/auth_controller.dart';
 import 'package:veegil/app/modules/home/controllers/home_controller.dart';
 import 'package:veegil/app/widgets/shimmers.dart';
 
 class DashboardView extends GetView<HomeController> {
-  const DashboardView({Key? key}) : super(key: key);
+  DashboardView({Key? key}) : super(key: key);
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +25,14 @@ class DashboardView extends GetView<HomeController> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Total Balance',
                   style: TextStyle(
                     color: Colors.white60,
                   ),
                 ),
-                Text(
+                const Text(
                   '\u20a6 5,720.40',
                   style: TextStyle(
                     fontSize: 52,
@@ -38,9 +40,9 @@ class DashboardView extends GetView<HomeController> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Spacer(),
-                Text(
-                  'Muhammad Buhari',
+                const Spacer(),
+                const Text(
+                  'Account Number',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -48,14 +50,14 @@ class DashboardView extends GetView<HomeController> {
                   ),
                 ),
                 Text(
-                  '0807 *** *** 888',
-                  style: TextStyle(
+                  authController.accountNumber.value,
+                  style: const TextStyle(
                     // fontSize: 20,
                     fontWeight: FontWeight.w500,
                     color: Colors.white70,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
               ],
             ),
           ),
