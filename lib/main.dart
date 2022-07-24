@@ -11,7 +11,7 @@ import 'app/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  TokenManager.instance.initToken();
+  await TokenManager.instance.initToken();
   await setCookieManager();
 
   runApp(

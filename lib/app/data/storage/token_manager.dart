@@ -1,9 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../routes/app_pages.dart';
 
 class TokenManager extends Interceptor {
   static final TokenManager _instance = TokenManager._internal();
@@ -29,16 +25,6 @@ class TokenManager extends Interceptor {
       RequestOptions options, RequestInterceptorHandler handler) async {
     options.headers['token'] = _token;
     return super.onRequest(options, handler);
-  }
-
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
-    Get.log('onError: ${err.response?.data}');
-    if (err.response?.statusCode == 401 && Get.currentRoute != Routes.AUTH) {
-      _clearToken();
-      Get.offAllNamed(Routes.AUTH);
-    }
-    super.onError(err, handler);
   }
 
   Future<void> initToken() async {

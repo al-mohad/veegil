@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:veegil/app/routes/app_pages.dart';
+import 'package:veegil/app/data/network/api_error.dart';
 
 import '../../../data/enums/view_state.dart';
 import '../../../data/models/user.dart';
@@ -37,25 +37,22 @@ class AuthController extends GetxController {
       viewState.value = ViewState.busy;
       loginFormKey.currentState!.save();
       final data = {
-        'phoneNumber': phoneNumberController.text,
-        'password': passwordController.text,
+        'phoneNumber': phoneNumberController.text.trim(),
+        'password': passwordController.text.trim(),
       };
-      try {
-        await _authRepository.login(data);
-        phoneNumberController.clear();
-        passwordController.clear();
-        Get.offAllNamed(Routes.HOME);
-        update();
-      } catch (e) {
-        // Get.snackbar(
-        //   'Invalid Credentails',
-        //   'Phone number or password in incorrect',
-        //   backgroundColor: Colors.red,
-        //   colorText: Colors.white,
-        //   icon: const Icon(Icons.error, color: Colors.white),
-        // );
-        Get.log('Error: $e', isError: true);
-      }
+      await _authRepository
+          .login(data)
+          .then((value) => print(value))
+          .catchError((onError) {
+        final message = DioExceptions.fromDioError(onError).message;
+        Get.snackbar(
+          'Error',
+          message,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          icon: const Icon(Icons.error, color: Colors.white),
+        );
+      });
     } else {
       return;
     }
@@ -69,27 +66,22 @@ class AuthController extends GetxController {
       viewState.value = ViewState.busy;
       registerFormKey.currentState!.save();
       final data = {
-        'phoneNumber': phoneNumberController.text,
-        'password': passwordController.text,
+        'phoneNumber': phoneNumberController.text.trim(),
+        'password': passwordController.text.trim()
       };
-      try {
-        user = await _authRepository.register(data).then((value) {
-          phoneNumberController.clear();
-          passwordController.clear();
-          Get.offAllNamed(Routes.HOME);
-          return null;
-        });
-        update();
-      } catch (e) {
-        // Get.snackbar(
-        //   'Phone Number Already Exists',
-        //   'Please try another phone number',
-        //   backgroundColor: Colors.red,
-        //   colorText: Colors.white,
-        //   icon: const Icon(Icons.error, color: Colors.white),
-        // );
-        Get.log('Error: $e', isError: true);
-      }
+      await _authRepository
+          .register(data)
+          .then((value) => print(value))
+          .catchError((onError) {
+        final message = DioExceptions.fromDioError(onError).message;
+        Get.snackbar(
+          'Error',
+          message,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          icon: const Icon(Icons.error, color: Colors.white),
+        );
+      });
     } else {
       return;
     }

@@ -41,6 +41,8 @@ class DioExceptions implements Exception {
         return error["message"];
       case 404:
         return error["message"];
+      case 409:
+        return error["message"];
       case 422:
         return error["message"];
       case 500:
