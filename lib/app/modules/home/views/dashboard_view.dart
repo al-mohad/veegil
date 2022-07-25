@@ -6,6 +6,9 @@ import 'package:veegil/app/modules/auth/controllers/auth_controller.dart';
 import 'package:veegil/app/modules/home/controllers/home_controller.dart';
 import 'package:veegil/app/widgets/shimmers.dart';
 
+import '../../../widgets/custom_bottom_sheet.dart';
+import '../../../widgets/custom_button.dart';
+
 class DashboardView extends GetView<HomeController> {
   DashboardView({Key? key}) : super(key: key);
   final authController = Get.find<AuthController>();
@@ -67,13 +70,21 @@ class DashboardView extends GetView<HomeController> {
               CustomButton(
                 text: 'Transfer',
                 icon: Icons.arrow_upward_rounded,
-                onTap: () {},
+                onTap: () => Get.bottomSheet(
+                  const CustomButtomSheet(
+                    text: 'Transfer Money',
+                  ),
+                ),
                 color: Colors.green,
               ),
               CustomButton(
                 text: 'Withdraw',
                 icon: Icons.arrow_downward_rounded,
-                onTap: () {},
+                onTap: () => Get.bottomSheet(
+                  const CustomButtomSheet(
+                    text: 'Withdraw Money',
+                  ),
+                ),
                 color: Colors.red,
               ),
             ],
@@ -150,58 +161,6 @@ class DashboardView extends GetView<HomeController> {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class CustomButton extends StatelessWidget {
-  final String text;
-  final IconData icon;
-  final Function onTap;
-  final Color color;
-  const CustomButton({
-    Key? key,
-    required this.text,
-    required this.icon,
-    required this.onTap,
-    required this.color,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => onTap,
-        child: Container(
-          height: 50,
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: color,
-                  offset: const Offset(0, 1),
-                  blurRadius: 1,
-                  spreadRadius: 0.2,
-                ),
-              ]),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, size: 35, color: color),
-              const SizedBox(width: 10),
-              Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

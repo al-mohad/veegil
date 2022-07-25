@@ -38,7 +38,7 @@ class AuthController extends GetxController {
       viewState.value = ViewState.busy;
       loginFormKey.currentState!.save();
       final data = {
-        'phoneNumber': phoneNumberController.text.trim(),
+        'phoneNumber': '+${phoneNumberController.text.trim()}',
         'password': passwordController.text.trim(),
       };
       await _authRepository.login(data).then((value) async {
@@ -69,7 +69,7 @@ class AuthController extends GetxController {
       viewState.value = ViewState.busy;
       registerFormKey.currentState!.save();
       final data = {
-        'phoneNumber': phoneNumberController.text.trim(),
+        'phoneNumber': '+${phoneNumberController.text.trim()}',
         'password': passwordController.text.trim()
       };
       await _authRepository.register(data).then((value) async {
